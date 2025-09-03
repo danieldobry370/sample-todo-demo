@@ -104,7 +104,7 @@
 			.btn-icon {
 			background:none;
 			border:none;
-			padding:. 25rem;
+			padding: .25rem;
 			font-size: 18px;
 			display:inline-flex;
 			align-items:center;
@@ -260,7 +260,14 @@
 		<script>
 			// --- Zadání 1: curry funkce ---
 			// print('Hello')('World') -> "Hello World"
-			const print = a => b => `${a} ${b}`;
+			const printArrow = a => b => `${a} ${b}`;
+			
+			// klasická funkce
+			function printClassic(a) {
+			  return function(b) {
+			    return a + ' ' + b;
+			  };
+			}
 			
 			// --- Zadání 2: Promise + setTimeout + template literal ---
 			// po ms vypíše "a x b = result"
@@ -270,7 +277,7 @@
 			// ukázka pro HTML pokud se klikne na id btnPrint
 			document.getElementById('btnPrint')?.addEventListener('click', () => {
 			  const out = document.getElementById('printResult');
-			  if (out) out.textContent = print('Hello')('World');
+			  if (out) out.textContent = printClassic('Hello')('World');
 			});
 			
 			document.getElementById('delayedBtn')?.addEventListener('click', async () => {
