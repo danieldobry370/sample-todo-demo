@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="cs">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Zadání k výběrovému řízení | LinuxBox.cz</title>
+		<meta name="description" content="Komplexní řešení pro velké organizace: cloud, kyberbezpečnost, ústředny, technologická řešení a servis."/>
+		<meta name="author" content="LinuxBox.cz">
+		<meta name="keywords" content="cloud, kyberbezpečnost, IT, ústředny, servis">
+		<link rel="icon" href="https://www.linuxbox.cz/favicon.ico" type="image/x-icon">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+		<meta property="og:title" content="LinuxBox – Od cloudu přes kyberbezpečnost, ústředny, IT řešení a servis">
+		<meta property="og:description" content="Komplexní řešení pro velké organizace: cloud, kyberbezpečnost, ústředny, technologická řešení a servis.">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://www.linuxbox.cz/">
+		<meta property="og:image" content="https://www.linuxbox.cz/og-image.jpg">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="LinuxBox – Od cloudu přes kyberbezpečnost, ústředny, IT řešení a servis">
+		<meta name="twitter:description" content="Komplexní řešení pro velké organizace: cloud, kyberbezpečnost, ústředny, technologická řešení a servis.">
+		<meta name="twitter:image" content="https://www.linuxbox.cz/twitter-image.jpg">
+		<style>
+			html { box-sizing: border-box; }
+			*, *::before, *::after { box-sizing: inherit; }
+			body{
+			font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+			background: #f6f8fa;
+			color: #111;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			}
+			.bg-blue {
+			background: var(--bs-primary, #0d6efd);
+			}
+			.navbar {
+			height: 75px;
+			align-items: center;
+			margin-bottom: 1rem;
+			}
+			.logo-svg { height: 45px; width: auto; border-right: 2px solid #fff; }
+			.logo-svg g { fill: #fff !important; }
+			.navbar-title { font-weight:700; font-size: 1.05rem; color: #fff; }
+			.navbar-subtitle { font-size: .9rem; opacity: .95; color: rgba(255,255,255,0.95); }
+			.card {
+			border: none;
+			border-radius: 14px;
+			box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+			display: block;
+			}
+			.card-body {
+			padding: 1rem;
+			display: block;
+			}
+			.card-body-col { display:block; gap:.75rem; }
+			.card-footer-row {
+			display:flex;
+			gap:.75rem;
+			align-items:center;
+			margin-top: .75rem;
+			}
+			.badge-assignment {
+			display:inline-block;
+			background: var(--bs-primary, #0d6efd);
+			color: #fff;
+			font-weight:700;
+			border-radius: 999px;
+			padding: .28rem .6rem;
+			font-size: .85rem;
+			}
+			input.form-control, textarea.form-control, .btn {
+			height: 3rem;
+			border-radius: 999px;
+			}
+			.btn-wide {
+			min-width: 10rem;
+			padding-left:1rem;
+			padding-right:1rem;
+			font-weight:700;
+			display:inline-flex;
+			align-items:center;
+			justify-content:center;
+			}
+			code { background-color: #ffffff80; padding:.15rem; border-radius:.5rem; }
+			.code-preview {
+			background-color: #35444f;
+			color:#e9f5ff;
+			padding:.7rem;
+			border-radius:.5rem;
+			font-family: ui-monospace, "Roboto Mono", monospace;
+			font-size:.9rem;
+			white-space: pre-wrap;
+			}
+			.output-pill {
+			min-height: 3rem;
+			padding: .5rem 1rem;
+			border-radius: 999px;
+			background:#fff;
+			border: 1px solid rgba(0,0,0,.06);
+			display:flex;
+			align-items:center;
+			white-space:pre-wrap;
+			}
+			.btn-icon {
+			background:none;
+			border:none;
+			padding:.25rem;
+			font-size:1.1rem;
+			display:inline-flex;
+			align-items:center;
+			justify-content:center;
+			border-radius:50%;
+			}
+			.btn-icon.delete { color:#d32f2f; }
+			ul#tasks { margin:0; padding:0; list-style:none; }
+			li.task {
+			background:#fff;
+			border-radius:.5rem;
+			padding:.55rem .75rem;
+			margin-bottom:.5rem;
+			display:flex;
+			gap:.6rem;
+			align-items:center;
+			box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+			border: 1px solid rgba(0,0,0,0.06);
+			}
+			.task-text { word-break:break-word; flex:1 1 auto; }
+			.badges-list .badge { margin-right:.4rem; margin-bottom:.25rem; }
+			.sticky-offset { top: 1rem; }
+			.text-blue { color: var(--bs-primary, #0d6efd); }
+			@media (max-width: 47.999rem) {
+			.btn-wide { min-width: 7.5rem; }
+			}
+		</style>
+	</head>
+	<body>
+		<header class="navbar p-3 bg-blue text-white" role="banner" aria-label="Zadání">
+			<div class="container d-flex justify-content-start">
+				<svg viewBox="0 0 141.7 55.87" class="logo-svg border-right-1 pr-4 mr-3 pe-3 me-3">
+					<g>
+						<path d="M33.26,19.94a4.7,4.7,0,0,0-2.52.72,4.8,4.8,0,0,0-1.8,2.24V20.38H23.83V40H29.3v-14a1.22,1.22,0,0,1,.51-1.08,1.46,1.46,0,0,1,1.08-.43,1.3,1.3,0,0,1,1.08.5A1.82,1.82,0,0,1,32.33,26V40h5.54V23.83A3.54,3.54,0,0,0,36.5,21,4.88,4.88,0,0,0,33.26,19.94Z" fill="currentColor"></path>
+						<path d="M49.68,34.56a1.75,1.75,0,0,1-.43,1.15,1.63,1.63,0,0,1-1.15.43,1.29,1.29,0,0,1-1-.43,1.53,1.53,0,0,1-.36-1.15V20.38H41.11V36.79a3.63,3.63,0,0,0,1.23,2.81,4.7,4.7,0,0,0,3.31,1.08c1.94,0,3.38-1,4.46-3.1V40h5.11V20.38H49.68Z" fill="currentColor"></path>
+						<rect x="116.71" y="35.71" width="4.18" height="4.25" fill="currentColor"></rect>
+						<polygon points="6.19 13.68 0 13.68 0 39.96 13.68 39.96 13.68 34.78 6.19 34.78 6.19 13.68" fill="currentColor"></polygon>
+						<rect x="15.19" y="20.38" width="5.54" height="19.58" fill="currentColor"></rect>
+						<rect x="15.19" y="13.75" width="5.54" height="4.75" fill="currentColor"></rect>
+						<path d="M128.16,35.86a2.11,2.11,0,0,1-.36,1.29,1.17,1.17,0,0,1-.94.43,1.48,1.48,0,0,1-.93-.36,1.45,1.45,0,0,1-.36-1.08V30a1.46,1.46,0,0,1,1.65-1.58c.22,0,.36.14,.51.36a2.53,2.53,0,0,1,.21,1.22l.08,1.23h3.74v-.79c0-1.88-.5-3.17-1.58-3.89a6,6,0,0,0-3.75-.94,4.73,4.73,0,0,0-3.67,1.3A4.26,4.26,0,0,0,121.68,30v6a4.46,4.46,0,0,0,1.3,3.46,5.37,5.37,0,0,0,3.45,1,6,6,0,0,0,4.11-1.15c.93-.79,1.36-2.23,1.36-4.17v-.8h-3.74Z" fill="currentColor"></path>
+						<path d="M78.12,23.4A3,3,0,0,0,78.91,21a2.22,2.22,0,0,0-1.08-2.23c-.21-.07-.43-.07-.72-.14A13.87,13.87,0,0,0,75,18.43v5.62a8.7,8.7,0,0,0,2.16-.22A1.61,1.61,0,0,0,78.12,23.4Z" fill="currentColor"></path>
+						<polygon points="141.7 26.06 132.98 26.06 132.98 29.16 137.23 29.16 132.7 37.22 132.7 39.96 141.7 39.96 141.7 36.86 137.16 36.86 141.7 29.16 141.7 26.06" fill="currentColor"></polygon>
+						<path d="M94.54,23.83h-.08c-1.15.07-1.72.72-1.72,2v9a1.78,1.78,0,0,0,.57,1.44,2.45,2.45,0,0,0,2.31,0,1.69,1.69,0,0,0,.57-1.44v-9a2.13,2.13,0,0,0-.5-1.51A1.35,1.35,0,0,0,94.54,23.83Z" fill="currentColor"></path>
+						<path d="M114.77,36.58l6.77-24.48L77.76,0,73.94,13.68h3.17a10.13,10.13,0,0,1,5.55,1.37,5.75,5.75,0,0,1,2.44,5.11,7.25,7.25,0,0,1-.93,4,7.87,7.87,0,0,1-2.09,1.95,6.61,6.61,0,0,1,2.74,2.37,8.51,8.51,0,0,1,.64,3.82c0,2.52-.57,4.39-1.87,5.61-1.29,1.37-3.38,2-6.12,2H72.22l-3.46-7.42v-.07l-1.08-2.23,4.46-9.86H66.53l-1.8,5.54-1.66-5.54H57.53l4.39,9.86L57.31,40h5.76l1.8-5.54L66.67,40l-1.08,3.82,43.78,12.09L113.83,40h-3.09L109,34.34,107.14,40h-5.76l4.6-9.79-4.39-9.87h5.55l1.65,5.62,1.8-5.62h5.69l-4.46,9.87Zm-13-10.88v9.15A5,5,0,0,1,99.79,39a7.85,7.85,0,0,1-5.33,1.66A8.19,8.19,0,0,1,88.85,39a4.94,4.94,0,0,1-1.73-3.89V25.85a5.55,5.55,0,0,1,1.8-4.25,7.7,7.7,0,0,1,5.54-1.8h.08A7.75,7.75,0,0,1,100,21.6,5.5,5.5,0,0,1,101.74,25.7Z" fill="currentColor"></path>
+						<path d="M75,35.28h1a6,6,0,0,0,1.15-.07,3.29,3.29,0,0,0,1.73-.79,4.5,4.5,0,0,0,.5-2.38,3.18,3.18,0,0,0-.93-2.66,3.1,3.1,0,0,0-1.3-.44A9.75,9.75,0,0,0,75,28.8Z" fill="currentColor"></path>
+					</g>
+				</svg>
+				<div>
+					<div class="navbar-title">Zadání k výběrovému řízení</div>
+					<div class="navbar-subtitle">Ukázka řešení</div>
+				</div>
+			</div>
+		</header>
+		<div class="container py-4">
+			<div class="row g-4">
+				<div class="col-lg-7">
+					<div class="card mb-3">
+						<div class="card-body">
+							<div class="card-body-col">
+								<div>
+									<div class="mb-2"><span class="badge-assignment">Zadání 1</span></div>
+									<h3 class="mb-1">Využití funkce<code>Currying</code></h3>
+									<p class="text-muted small mb-2">Funkce vrací další funkci, ukázka využití curryingu (klasická i arrow).</p>
+									<div class="code-preview">/* příklad: print('Hello')('World') -> "Hello World" */</div>
+								</div>
+								<div class="card-footer-row">
+									<button id="btnPrint" class="btn btn-primary btn-wide" aria-label="Spustit Zadání 1">
+									<i class="bi bi-play-fill me-1" aria-hidden="true"></i> Spustit
+									</button>
+									<div class="flex-grow-1">
+										<div id="printResult" class="output-pill" aria-live="polite" role="status"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card mb-3">
+						<div class="card-body">
+							<div class="card-body-col">
+								<div>
+									<div class="mb-2"><span class="badge-assignment">Zadání 2</span></div>
+									<h3 class="mb-1">Využití funkce <code>delayedSum</code></h3>
+									<p class="text-muted small mb-2">Vrací Promise, která po zpoždění vrátí text se součtem.</p>
+									<div class="code-preview">/* delayedSum(3,5,1000) -> po 1s "Součin 3 + 5 = 8" */</div>
+								</div>
+								<div class="card-footer-row">
+									<button id="delayedBtn" class="btn btn-primary btn-wide" aria-label="Spustit Zadání 2">
+									<i class="bi bi-play-fill me-1" aria-hidden="true"></i> Spustit
+									</button>
+									<div class="flex-grow-1">
+										<div id="delayedOutput" class="output-pill" aria-live="polite" role="status"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<div class="card-body-col">
+								<div>
+									<div class="mb-2"><span class="badge-assignment">Zadání 3</span></div>
+									<h3 class="mb-1">Využití funkce <code>addTask</code></h3>
+									<p class="text-muted small mb-2">Jednoduché přidávání, označení a mazání úkolů s uložením do localStorage.</p>
+									<div class="input-group mb-3">
+										<input id="taskInput" type="text" class="form-control" placeholder="Zapsat nový úkol..." aria-label="Nový úkol">
+										<button id="addBtn" class="btn btn-primary btn-wide" aria-label="Přidat úkol">
+										<i class="bi bi-plus-lg me-1" aria-hidden="true"></i> Přidat
+										</button>
+									</div>
+									<div class="small text-muted mb-2">Klikněte na kolečko pro označení jako hotové, ikona koše smaže úkol.</div>
+									<ul id="tasks" aria-live="polite"></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-5">
+					<div class="sticky-top sticky-offset">
+						<div class="card bg-blue">
+							<div class="card-body">
+								<h5 class="mb-3 text-white">Co ukazuji v kódu:</h5>
+								<div class="badges-list mb-3">
+									<span class="badge badge-assignment text-blue bg-white">Zadání 1</span>
+									<div class="small text-white">
+										<strong>Currying:</strong> ukázka práce s funkcí, která dokáže vracet jinou funkci.
+										Nejprve klasický zápis <code>function</code>, a také varianta pomocí arrow funkce.
+										Výsledek: <code>print('Hello')('World')</code> → „Hello World“.
+									</div>
+								</div>
+								<div class="badges-list mb-3">
+									<span class="badge badge-assignment text-blue bg-white">Zadání 2</span>
+									<div class="small text-white">
+										<strong>Asynchronní kód:</strong> funkce <code>delayedSum</code> dává objekt
+										<code>Promise</code>, který se vyřeší až po zpoždění pomocí
+										<code>setTimeout</code>. Použití <code>async/await</code> pro označení a odložení, šablonové řetězce pro práci s proměnými v textu
+										(template literals) a jednoduché ošetření chyb.
+									</div>
+								</div>
+								<div class="badges-list">
+									<span class="badge badge-assignment text-blue bg-white">Zadání 3</span>
+									<div class="small text-white">
+										<strong>ToDo aplikace:</strong> přidávání úkolů (tlačítkem i klávesou Enter),
+										označování jako hotové, mazání pomocí ikony koše. Ukázka využívá <em>event delegation</em> pro práci s celým elementem a ukládání úkolů do
+										<code>localStorage</code>, aby zůstaly zachované i po obnovení stránky.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			// --- Zadání 1: curry funkce ---
+			// print('Hello')('World') -> "Hello World"
+			const print = a => b => `${a} ${b}`;
+			
+			// --- Zadání 2: Promise + setTimeout + template literal ---
+			// po ms vypíše "a x b = result"
+			const delayedSum = (a, b, ms = 1000) =>
+			        new Promise(resolve => setTimeout(() => resolve(`Součin ${a} * ${b} = ${a * b}`), ms));
+			
+			// ukázka pro HTML pokud se klikne na id btnPrint
+			document.getElementById('btnPrint')?.addEventListener('click', () => {
+			  const out = document.getElementById('printResult');
+			  if (out) out.textContent = print('Hello')('World');
+			});
+			
+			document.getElementById('delayedBtn')?.addEventListener('click', async () => {
+			  const out = document.getElementById('delayedOutput');
+			  if (!out) return;
+			  out.textContent = 'Načítání...';
+			  try {
+			    out.textContent = await delayedSum(3, 5, 1000);
+			  } catch (err) {
+			    out.textContent = 'Chyba';
+			    console.error('delayedSum selhalo', err); // pro kontrolu v konzoli
+			  }
+			});
+			
+			// --- Zadání 3: jednoduchý todo list ---
+			const tasksKey = 'todo.minimal.v1';
+			const tasksUl = document.getElementById('tasks');
+			const input = document.getElementById('taskInput');
+			const addBtn = document.getElementById('addBtn');
+			
+			// uloží aktuální seznam do localStorage
+			const save = () => {
+			  if (!tasksUl) return;
+			  const arr = [...tasksUl.children].map(li => ({
+			    text: li.querySelector('.task-text')?.textContent || '',
+			    done: li.classList.contains('done')
+			  }));
+			  try {
+			    localStorage.setItem(tasksKey, JSON.stringify(arr));
+			  } catch (e) {
+			    // při selhání localStorage v anonymním okně
+			    console.warn('Ukládání do localStorage selhalo', e);
+			  }
+			};
+			
+			// vytvoří <li> s tlačítky: text se vkládá bezpečně jako textContent
+			const createLi = (text, done = false) => {
+			  const li = document.createElement('li');
+			  li.className = 'task' + (done ? ' done' : '');
+			
+			  const toggleBtn = document.createElement('button');
+			  toggleBtn.className = 'btn-icon toggle';
+			  toggleBtn.title = 'Označit';
+			  toggleBtn.setAttribute('aria-label', 'Označit úkol');
+			  toggleBtn.innerHTML = `<i class="bi ${done ? 'bi-check-circle-fill' : 'bi-circle'}" aria-hidden="true"></i>`;
+			
+			  const txt = document.createElement('div');
+			  txt.className = 'task-text';
+			  txt.textContent = text;
+			
+			  const delBtn = document.createElement('button');
+			  delBtn.className = 'btn-icon delete';
+			  delBtn.title = 'Smazat';
+			  delBtn.setAttribute('aria-label', 'Smazat úkol');
+			  delBtn.innerHTML = `<i class="bi bi-trash" aria-hidden="true"></i>`;
+			
+			  if (done) {
+			    txt.style.textDecoration = 'line-through';
+			    txt.style.opacity = '0.6';
+			  }
+			
+			  li.appendChild(toggleBtn);
+			  li.appendChild(txt);
+			  li.appendChild(delBtn);
+			  return li;
+			};
+			
+			// načte úkoly z localStorage (pokud jsou) a vykreslí je
+			const load = () => {
+			  if (!tasksUl) return;
+			  const raw = localStorage.getItem(tasksKey);
+			  if (!raw) return;
+			  try {
+			    const arr = JSON.parse(raw);
+			    arr.forEach(t => tasksUl.appendChild(createLi(t.text, t.done)));
+			  } catch (e) {
+			    // když JSON neprojde, načtení přeskočíme (data mohou být poškozená)
+			    console.warn('Chyba při parsování úkolů z localStorage', e);
+			  }
+			};
+			
+			// přidá nový úkol (s jednoduchou validací prázdného pole)
+			const add = () => {
+			  if (!tasksUl || !input) return;
+			  const v = input.value.trim();
+			  if (!v) {
+			    alert('Vyplň pole prosím.');
+			    input.focus();
+			    return;
+			  }
+			  tasksUl.appendChild(createLi(v, false));
+			  input.value = '';
+			  input.focus();
+			  save();
+			};
+			
+			// eventy pro přidání úkolu: tlačítko a Enter v inputu
+			addBtn?.addEventListener('click', e => { e.preventDefault(); add(); });
+			input?.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
+			
+			// rozdělení eventů na seznam úkolů:
+			// - toggle pro označení
+			// - delete pro odstranění
+			  tasksUl?.addEventListener('click', e => {
+			  const btn = e.target.closest('button');
+			  if (!btn) return;
+			  const li = btn.closest('li');
+			  if (!li) return;
+			
+			  if (btn.classList.contains('toggle')) {
+			    const icon = btn.querySelector('i');
+			    const txt = li.querySelector('.task-text');
+			    const now = li.classList.toggle('done');
+			    if (icon) icon.className = now ? 'bi bi-check-circle-fill' : 'bi bi-circle';
+			    if (txt) {
+			      txt.style.textDecoration = now ? 'line-through' : 'none';
+			      txt.style.opacity = now ? '0.6' : '1';
+			    }
+			    save();
+			    return;
+			  }
+			
+			  if (btn.classList.contains('delete')) {
+			    li.remove();
+			    save();
+			    return;
+			  }
+			});
+			
+			// načíst při startu
+			load();
+		</script>
+	</body>
+</html>
